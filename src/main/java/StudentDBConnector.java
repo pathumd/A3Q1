@@ -45,7 +45,7 @@ public class StudentDBConnector {
         }
     }
 
-    /** Operation methods **/
+    /** Application methods **/
 
     /**
      * Retrieves information of all students in the students table.
