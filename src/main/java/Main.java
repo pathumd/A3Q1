@@ -1,3 +1,5 @@
+import java.sql.Date;
+
 /**
  * Main class
  *
@@ -12,5 +14,12 @@ public class Main {
     public static void main(String[] args) {
         // Create PostgresConnector
         StudentDBConnector studentDB = new StudentDBConnector("postgres", "postgres", 5433);
+
+        // Get all students
+        studentDB.getAllStudents();
+
+        // Insert new student
+        studentDB.addStudent("Pathum", "Danthanarayana", "pathumd@email.com", new Date(1710093600011L));
+        studentDB.getAllStudents();
     }
 }

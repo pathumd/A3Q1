@@ -1,6 +1,4 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 /**
  * PostgresConnector class
@@ -40,6 +38,52 @@ public class StudentDBConnector {
         }
         else {
             System.out.println("Connection to StudentManagementSystem unsuccessful");
+        }
+    }
+
+    /** Operation methods **/
+
+    /**
+     * Retrieves information of all students in the students table.
+     */
+    public void getAllStudents() {
+        try {
+            Statement statement = connection.createStatement();
+            statement.executeQuery("SELECT * FROM students");
+
+            // Get result of query
+            ResultSet resultSet = statement.getResultSet();
+            while(resultSet.next()) {
+                int student_id = resultSet.getInt(1);
+                String first_name = resultSet.getString(2);
+                String last_name = resultSet.getString(3);
+                String email = resultSet.getString(4);
+                Date enrollment_date = resultSet.getDate(5);
+                System.out.println(String.format("%d: %s, %s, %s, %s", student_id, first_name, last_name, email, enrollment_date));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Adds a new student to the students table.
+     * @param firstName - the first name of the student
+     * @param lastName - the last name of the student
+     * @param email - the email of the student
+     * @param enrollmentDate - the enrollment date of the student
+     */
+    public void addStudent(String firstName, String lastName, String email, Date enrollmentDate) {
+        try {
+            // Insert entry into table using prepared statement
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO students (first_name, last_name, email, enrollment_date) VALUES (?, ?, ?, ?)");
+            statement.setString(1, firstName);
+            statement.setString(2, lastName);
+            statement.setString(3, email);
+            statement.setDate(4, enrollmentDate);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 }
