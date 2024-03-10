@@ -86,4 +86,21 @@ public class StudentDBConnector {
             throw new RuntimeException(e);
         }
     }
+
+    /**
+     * Updates the email of the specified student.
+     * @param studentId - the student ID of the student
+     * @param newEmail - the new email of the student
+     */
+    public void updateStudentEmail(int studentId, String newEmail) {
+        try {
+            // Update entry in table using prepared statement
+            PreparedStatement statement = connection.prepareStatement("UPDATE students SET email=? WHERE student_id=?");
+            statement.setString(1, newEmail);
+            statement.setInt(2, studentId);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

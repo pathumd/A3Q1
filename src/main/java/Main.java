@@ -21,5 +21,9 @@ public class Main {
         // Insert new student
         studentDB.addStudent("Pathum", "Danthanarayana", "pathumd@email.com", new Date(1710093600011L));
         studentDB.getAllStudents();
+
+        // Update email of student
+        studentDB.updateStudentEmail(4, "pathumd@example.com");
+        studentDB.getAllStudents();
     }
 }
