@@ -10,6 +10,7 @@ public class Main {
      * Main method
      */
     public static void main(String[] args) {
-
+        // Create PostgresConnector
+        StudentDBConnector studentDB = new StudentDBConnector("postgres", "postgres", 5433);
     }
 }
