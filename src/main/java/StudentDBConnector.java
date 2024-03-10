@@ -1,7 +1,11 @@
 import java.sql.*;
 
 /**
- * PostgresConnector class
+ * The StudentDBConnector class establishes a connection
+ * to the StudentManagementSystem database in PostgreSQL
+ * (using JDBC), which contains the students table.
+ * The class contains methods to retrieve all students,
+ * add a student, update a student's email, and delete a student.
  *
  * @author Pathum Danthanarayana, 101181411
  * @date March 10, 2024
@@ -53,6 +57,7 @@ public class StudentDBConnector {
 
             // Get result of query
             ResultSet resultSet = statement.getResultSet();
+            // Print each entry from returned relation
             while(resultSet.next()) {
                 int student_id = resultSet.getInt(1);
                 String first_name = resultSet.getString(2);
@@ -81,6 +86,7 @@ public class StudentDBConnector {
             statement.setString(2, lastName);
             statement.setString(3, email);
             statement.setDate(4, enrollmentDate);
+            // Execute query
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -98,6 +104,23 @@ public class StudentDBConnector {
             PreparedStatement statement = connection.prepareStatement("UPDATE students SET email=? WHERE student_id=?");
             statement.setString(1, newEmail);
             statement.setInt(2, studentId);
+            // Execute query
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Deletes the specified student from the students table.
+     * @param studentId - The student ID of the student to be deleted
+     */
+    public void deleteStudent(int studentId) {
+        try {
+            // Delete entry in table using prepared statement
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM students WHERE student_id=?");
+            statement.setInt(1, studentId);
+            // Execute query
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
