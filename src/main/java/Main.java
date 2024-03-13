@@ -15,7 +15,7 @@ public class Main {
      */
     public static void main(String[] args) {
         // Create PostgresConnector
-        StudentDBConnector studentDB = new StudentDBConnector("postgres", "postgres", 5433);
+        StudentDBConnector studentDB = new StudentDBConnector("postgres", "postgres", 5432);
 
         // Get all students
         studentDB.getAllStudents();
