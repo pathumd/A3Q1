@@ -29,7 +29,12 @@ public class StudentDBConnector {
         connectToDB();
     }
 
+    /**
+     * Establishes connection to the StudentManagementSystem database
+     * (contains students table).
+     */
     private void connectToDB() {
+        // Attempt to establish connection
         try {
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(String.format("jdbc:postgresql://localhost:%d/StudentManagementSystem", portNumber), username, password);
