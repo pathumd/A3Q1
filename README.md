@@ -2,6 +2,9 @@
 Author: Pathum Danthanarayana, 101181411<br>
 Date: March 18, 2024
 
+## Demonstration Video
+YouTube link: https://youtu.be/j9sB9-wgKYI
+
 ## Database setup
 ### Creating the database
 1. To create the ```StudentManagementSystem``` database, begin by opening pgAdmin4.
