@@ -98,3 +98,11 @@ UPDATE students SET email=? WHERE student_id=?
 DELETE FROM students WHERE student_id=?
 ```
 - Here, only the tuple from the students table matching the specified student ID will be deleted.
+
+## Managing program dependencies
+In order to connect to PostgreSQL and interact with a database in Java, the ```JDBC Driver``` is required.
+Rather than manually downloading the driver and including it in my project, I used Maven to manage the dependencies
+for my application.
+In this case, I copied the Maven XML code from ```https://jdbc.postgresql.org/download/``` (for version 42.7.3) and 
+added it to ```pom.xml```. This way, Maven will handle retrieving downloading the JDBC driver and including it in my 
+project.
